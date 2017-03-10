@@ -16,7 +16,7 @@
       <p v-if="message === 'Vuetiful'">Yes it is!</p>
     </div>
     <input type="text" v-model="newMessage" v-on:keyup.enter="addMessage" v-bind:class="{ active: isTyping }">
-    <button v-on:click="addMessage">Add message</button>
+    <button v-on:click="addMessage" v-bind:style="styleObject">Add message</button>
     <p>
       <small v-if="isTyping">{{now}} You were typing '{{newMessage}}' weren't you?</small>
     </p>
@@ -30,6 +30,10 @@
         messages: ['beautiful', 'Vuetiful', 'sexy'],
         isTyping: false,
         msgTimeout: null,
+        styleObject: {
+          textTransform: 'uppercase',
+          fontWeight: '600'
+        }
       },
       methods: {
         addMessage: function () {
