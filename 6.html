@@ -32,6 +32,8 @@
       },
       computed: {
         now: function () {
+          // note that this will always return the same string
+          // TODO: explain this
           return new Date().toString().split(' ').slice(0, 4).join(' ') + ':'
         }
       },
