@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>It's a Vuetiful World!</title>
+</head>
+<body>
+  <div id="app">
+    <p>It's a <span v-bind:title="message">{{ message }}</span> world!</p>
+  </div>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.2/vue.min.js"></script>
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Vuetiful'
+      }
+    })
+  </script>
+</body>
+</html>

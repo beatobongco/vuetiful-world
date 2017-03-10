@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>It's a Vuetiful World!</title>
+  <style type="text/css">
+    .active {
+      outline: none;
+      border: 2px solid tomato;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div v-for="message in messages">
+      <p>It's a <span v-bind:title="message">{{ message }}</span> world!</p>
+      <p v-if="message === 'Vuetiful'">Yes it is!</p>
+    </div>
+    <input type="text" v-model="newMessage" v-on:keyup.enter="addMessage" v-bind:class="{ active: isTyping }">
+    <button v-on:click="addMessage">Add message</button>
+    <p>
+      <small v-if="isTyping">{{now}} You were typing '{{newMessage}}' weren't you?</small>
+    </p>
+  </div>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.2/vue.js"></script>
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        newMessage: null,
+        messages: ['beautiful', 'Vuetiful', 'sexy'],
+        isTyping: false,
+        msgTimeout: null,
+      },
+      methods: {
+        addMessage: function () {
+          this.messages.push(this.newMessage)
+        }
+      },
+      computed: {
+        now: function () {
+          return new Date().toString().split(' ').slice(0, 4).join(' ') + ':'
+        }
+      },
+      watch: {
+        newMessage: function (m) {
+          this.isTyping = true
+          clearTimeout(this.msgTimeout)
+          this.msgTimeout = setTimeout(function () {
+            app.isTyping = false
+          }, 1500)
+        }
+      }
+    })
+  </script>
+</body>
+</html>
